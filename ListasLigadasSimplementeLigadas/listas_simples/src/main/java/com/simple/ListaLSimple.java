@@ -16,12 +16,22 @@ public class ListaLSimple {
         this.inicio = inicio;
     }
 
+    // Metodo para insertar valores
+
+    public void insertar(int dato){
+        if (this.estaVacia()) {
+            this.inicio = new Nodo(dato);
+        } else {
+            Nodo auxNodo = this.inicio;
+            while (auxNodo.getNext() != null) { // Recorre la lista
+                auxNodo = auxNodo.getNext();
+            }
+            auxNodo.setNext(new Nodo(dato)); // Inserta la referencia al nuevo nodo
+        }
+    }
+
     // Metodos indicados
-
     
-
-
-
 
     // toString que retorna el contenido de la lista
     @Override

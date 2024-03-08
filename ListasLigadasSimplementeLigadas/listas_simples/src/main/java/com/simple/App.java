@@ -11,7 +11,6 @@ public class App
     public static void main( String[] args ) {
 
         // Espacio ideal para realizar pruebas
-        
      }
 }
 
