@@ -50,7 +50,7 @@ public class App
                     // Opcion para calcular el mayor dato e indicar su posicion
                     resultado = lista.encontrarMayor(lista.getInicio());
                     System.out.println("El numero mayor es: " + resultado.numero);
-                    System.out.println("Se encuentra en la posici�n: " + resultado.i);
+                    System.out.println("Se encuentra en la posicion: " + resultado.i);
                     break;
                 case 2:
                     // Opcion para calcular el dato mínimo y contar su cantidad de repeticiones
@@ -60,12 +60,35 @@ public class App
                     break;
                 case 3:
                     // Lógica para sumar todos los datos de la lista recursivamente
+                    if (!lista.estaVacia()) {
+                        System.out.println("La suma de los elementos es: " + lista.sumarTodos(lista.getInicio()));
+                    } else {
+                        System.out.println("Lista Vacia");
+                    }
                     break;
                 case 4:
                     // Lógica para sumar los datos pares de la lista recursivamente
+                    if (!lista.estaVacia()) {
+                        if (lista.verPares(lista.getInicio()) != "") {
+                            System.out.println("La suma de los elementos pares es: " + lista.sumarPares(lista.getInicio()));
+                        } else {
+                            System.out.println("No hay elementos pares a sumar");
+                        }
+                    } else {
+                        System.out.println("Lista Vacia");
+                    }
                     break;
                 case 5:
                     // Lógica para visualizar los datos pares de la lista recursivamente
+                    if (!lista.estaVacia()) {
+                        if (lista.verPares(lista.getInicio()) != "") {
+                            System.out.println("Los elementos pares son: " + lista.verPares(lista.getInicio()));
+                        } else {
+                            System.out.println("No hay elementos pares");
+                        }
+                    } else {
+                        System.out.println("Lista Vacia");
+                    }
                     break;
                 case 6:
                     if (lista.estaVacia()) {
