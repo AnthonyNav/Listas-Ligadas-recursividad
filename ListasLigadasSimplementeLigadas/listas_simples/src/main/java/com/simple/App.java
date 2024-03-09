@@ -11,7 +11,8 @@ public class App
         Scanner scan = new Scanner(System.in);
         ListaLSimple lista = new ListaLSimple();
         boolean salir = false;
-        int opcion, oplist;
+        int opcion, oplist, posicion;
+        Resultado resultado = new Resultado();
         
         do{
             System.out.println("Desea ingresar datos a la lista? \n1.Si \t 2.No");
@@ -26,7 +27,7 @@ public class App
                     System.out.println("Saliendo..");
                     break;
                 default:
-                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
+                    System.out.println("Opción no válida. Por favor, seleccione una opcion valida.");
                     break;
             }
         } while (oplist !=2);
@@ -46,10 +47,16 @@ public class App
             opcion = scan.nextInt();
             switch (opcion) {
                 case 1:
-                    // Lógica para calcular el mayor dato e indicar su posición
+                    // Opcion para calcular el mayor dato e indicar su posicion
+                    resultado = lista.encontrarMayor(lista.getInicio());
+                    System.out.println("El numero mayor es: " + resultado.numero);
+                    System.out.println("Se encuentra en la posici�n: " + resultado.i);
                     break;
                 case 2:
-                    // Lógica para calcular el dato mínimo y contar su cantidad de repeticiones
+                    // Opcion para calcular el dato mínimo y contar su cantidad de repeticiones
+                    resultado = lista.encontrarMenor(lista.getInicio());
+                    System.out.println("El numero menor es: " + resultado.numero);
+                    System.out.println("El numero de iteraciones es: " + resultado.i);
                     break;
                 case 3:
                     // Lógica para sumar todos los datos de la lista recursivamente
@@ -68,7 +75,15 @@ public class App
                     }
                     break;
                 case 7:
-                    // Lógica para buscar un dato en la lista recursivamente
+                    // Opcion para buscar un dato en la lista recursivamente, el metodo regresa la posicion en la que se encuentra
+                    System.out.println("Ingresa el numero a buscar: ");
+                    int dato = scan.nextInt();
+                    posicion = lista.Buscar(lista.getInicio(), dato, 1);
+                    if(posicion == -1)
+                        System.out.println("Numero no encontrado ");
+                    else 
+                        System.out.println("Numero encontrado en la posicion: " + posicion);
+                    
                     break;
                 case 8:
                     if (lista.estaVacia()) {
