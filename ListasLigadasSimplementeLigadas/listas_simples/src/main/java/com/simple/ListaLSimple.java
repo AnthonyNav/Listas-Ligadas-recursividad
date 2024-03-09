@@ -31,7 +31,34 @@ public class ListaLSimple {
     }
 
     // Metodos indicados
-    
+
+    // Sumar todos los elementos de forma recursiva
+    public int sumarTodos(Nodo n){
+        if (n != null) { // Verifica que no sea null
+            return n.getDato() + sumarTodos(n.getNext()); // Suma el valor y llama de nuevo a la funcion
+        }
+        return 0; // Si el nodo es null, entonces retornará 0
+    }
+
+    public int sumarPares(Nodo n){
+        if (n != null) { // Verifica que no sea null
+            if ((n.getDato() % 2) == 0) { // Suma el dato con la siguiente invocacion del metodo
+                return n.getDato() + sumarPares(n.getNext()); 
+            }
+            return sumarPares(n.getNext()); // Si no es par, entonces solo invoca de nuevo al metodo
+        }
+        return 0; // Si es null, retorna 0
+    }
+
+    public String verPares(Nodo n){
+        if (n != null) { // Verifica que no sea null
+            if ((n.getDato() % 2) == 0) { // Si es par
+                return " " + n.getDato() + verPares(n.getNext()); // Concatena nuestro elemento junto a la siguiente invocacion
+            }
+            return verPares(n.getNext()); // Sino simplemente llama de nuevo a la funcion
+        }
+        return ""; // Si es null solo retorna una cadena vacia
+    }
 
     // toString que retorna el contenido de la lista
     @Override
