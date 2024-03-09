@@ -60,24 +60,25 @@ public class ListaLSimple {
         return ""; // Si es null solo retorna una cadena vacia
     }
 
-    public String mostrarPrimos(Nodo n) {
+    public String verPrimos() {
+        Nodo auxNodo = inicio;
         String primos = "";
-        if (n != null) {
-            if (esPrimo(n.getDato())) {
-                primos += n.getDato() + " "; // Agrega el número primo a la cadena
+
+        while (auxNodo != null) {
+            if (esPrimo(auxNodo.getDato())) {
+                primos += auxNodo.getDato() + " ";
             }
-            primos += mostrarPrimos(n.getNext()); // Llama recursivamente al siguiente nodo
+            auxNodo = auxNodo.getNext();
         }
+
         return primos;
     }
-    
-    
-    private boolean esPrimo(int num) {
-        int i;
+
+    public boolean esPrimo(int num) {
         if (num <= 1) {
             return false;
         }
-        for (i = 2; i <= Math.sqrt(num); i++) {
+        for (int i = 2; i <= Math.sqrt(num); i++) {
             if (num % i == 0) {
                 return false;
             }
