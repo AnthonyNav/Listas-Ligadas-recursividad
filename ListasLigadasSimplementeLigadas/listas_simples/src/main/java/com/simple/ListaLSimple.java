@@ -78,8 +78,72 @@ public class ListaLSimple {
     public boolean estaVacia(){
         return inicio==null;
     }
-
-
     
+    // Método recursivo para encontrar el número mayor y su posición
+    public Resultado encontrarMayor(Nodo nodo) 
+    {
+        // Caso base: Si el nodo es nulo, retornar un valor sentinela
+        if (nodo == null) 
+        {
+            return new Resultado(Integer.MIN_VALUE, 0); // Número menor posible y posición inválida
+        }
+
+        // Llamada recursiva con el siguiente nodo en la lista
+        Resultado siguienteResultado = encontrarMayor(nodo.getNext());
+        
+        // Comparar el valor actual con el número mayor encontrado hasta ahora
+        if (nodo.getDato() > siguienteResultado.numero) 
+        {
+            // Si el valor actual es mayor, actualizar el número mayor y su posición
+            return new Resultado(nodo.getDato(), 1);
+        } 
+        else 
+        {
+            // Si el valor actual no es mayor, mantener el número mayor y su posición actual
+            return new Resultado(siguienteResultado.numero, siguienteResultado.i + 1);
+        }
+    }
     
+    // Método recursivo para encontrar el número menor y mostrar las iteraciones
+    public Resultado encontrarMenor(Nodo nodo) 
+    {
+        // Caso base: Si el nodo es nulo, retornar un valor sentinela
+        if (nodo == null) 
+        {
+            return new Resultado(Integer.MAX_VALUE, 0); // Número mayor posible y posición inicial
+        }
+
+        // Llamada recursiva con el siguiente nodo en la lista
+        Resultado siguienteResultado = encontrarMenor(nodo.getNext());
+        
+        // Comparar el valor actual con el número menor encontrado hasta ahora
+        if (nodo.getDato() < siguienteResultado.numero) 
+        {
+            // Si el valor actual es menor, actualizar el número menor y se incrementa el registro de las iteraciones
+            return new Resultado(nodo.getDato(), siguienteResultado.i + 1);
+        } 
+        else 
+        {
+            // Si el valor actual no es menor, mantener el número menor y se incrementa el registro de las iteraciones
+            return new Resultado(siguienteResultado.numero, siguienteResultado.i + 1);
+        }
+    }
+
+    //Metodo recursivo para encontrar un numero
+    public int Buscar(Nodo n, int num, int i) //en la variable i se llevara el registro de las iteraciones
+    {
+        if(n != null) //se verifica que el nodo tenga informacion
+        {
+          if(num!=n.getDato())
+          {
+              //En caso de que el valor del nodo actual no sea el que se busca se hace la llamada recursiva con el siguiente nodo y se incrementa i
+              return Buscar(n.getNext(), num, i+1);
+          }
+          else
+          {
+              return i; //Si se encuentra el numero, entonces se termina el metodo y se regresa i, que indica la posicion del dato en la lista ligada
+          }
+        }
+        return -1; //en caso de no encontrar el numero en la lista se retorna -1
+    }
 }
