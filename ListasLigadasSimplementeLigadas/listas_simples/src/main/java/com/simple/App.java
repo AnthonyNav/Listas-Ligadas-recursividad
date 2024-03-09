@@ -118,7 +118,7 @@ public class App
                         System.out.println("Lista actualizada: " + lista);
                     }
                     break;
-                case 0:
+                case 9:
                     salir = true;
                     System.out.println("Saliendo...");
                     break;
