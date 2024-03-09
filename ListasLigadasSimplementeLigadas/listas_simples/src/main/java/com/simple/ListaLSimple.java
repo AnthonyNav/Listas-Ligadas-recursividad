@@ -60,6 +60,47 @@ public class ListaLSimple {
         return ""; // Si es null solo retorna una cadena vacia
     }
 
+    public String verPrimos() {
+        Nodo auxNodo = inicio;
+        String primos = "";
+
+        while (auxNodo != null) {
+            if (esPrimo(auxNodo.getDato())) {
+                primos += auxNodo.getDato() + " ";
+            }
+            auxNodo = auxNodo.getNext();
+        }
+
+        return primos;
+    }
+
+    public boolean esPrimo(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void eliminarDato(int dato) {
+        inicio = eliminarDatoRecursivo(inicio, dato);
+    }
+
+    private Nodo eliminarDatoRecursivo(Nodo nodo, int dato) {
+        if (nodo == null) {
+            return null; // Si el nodo es nulo, no hay nada que eliminar
+        }
+        if (nodo.getDato() == dato) {
+            return nodo.getNext(); // Si el dato coincide con el dato a eliminar, se retorna el siguiente nodo
+        }
+        nodo.setNext(eliminarDatoRecursivo(nodo.getNext(), dato)); // Se avanza recursivamente al siguiente nodo
+        return nodo;
+    }
+    
     // toString que retorna el contenido de la lista
     @Override
     public String toString(){ // Asume que no esta vacia la lista

@@ -4,7 +4,7 @@
 ### Java ###
 # Compiled class file
 *.class
-
+ListasLigadasSimplementeLigadas/listas_simples/target/classes/com/simple/*.class
 # Log file
 *.log
 
