@@ -59,6 +59,18 @@ public class ListaLSimple {
         }
         return ""; // Si es null solo retorna una cadena vacia
     }
+
+    public String mostrarPrimos(Nodo n) {
+        String primos = "";
+        if (n != null) {
+            if (esPrimo(n.getDato())) {
+                primos += n.getDato() + " "; // Agrega el número primo a la cadena
+            }
+            primos += mostrarPrimos(n.getNext()); // Llama recursivamente al siguiente nodo
+        }
+        return primos;
+    }
+    
     
     private boolean esPrimo(int num) {
         int i;
@@ -72,33 +84,22 @@ public class ListaLSimple {
         }
         return true;
     }
-    
-    public String verPrimos(Nodo n) {
-        String primos = "";
-        if (n != null) {
-            if (esPrimo(n.getDato())) {
-                primos += n.getDato() + " "; // Agrega el número primo a la cadena
-            }
-            primos += verPrimos(n.getNext()); // Llama recursivamente al siguiente nodo
-        }
-        return primos;
-    }
-    
-    public void eliminarDato(int dato){
-        inicio=eliminarDatoRecursivo(inicio, dato);
-    }
-    
-    private Nodo eliminarDatoRecursivo(Nodo n, int dato){
-        if (n == null) {
-            return null; // Si el nodo es nulo, no hay nada que eliminar
-        }
-        if (n.getDato() == dato) {
-            return n.getNext(); // Si el dato coincide con el dato a eliminar, se retorna el siguiente nodo
-        }
-        n.setNext(eliminarDatoRecursivo(n.getNext(), dato)); // Se avanza recursivamente al siguiente nodo
-        return n;
+
+    public void eliminarDato(int dato) {
+        inicio = eliminarDatoRecursivo(inicio, dato);
     }
 
+    private Nodo eliminarDatoRecursivo(Nodo nodo, int dato) {
+        if (nodo == null) {
+            return null; // Si el nodo es nulo, no hay nada que eliminar
+        }
+        if (nodo.getDato() == dato) {
+            return nodo.getNext(); // Si el dato coincide con el dato a eliminar, se retorna el siguiente nodo
+        }
+        nodo.setNext(eliminarDatoRecursivo(nodo.getNext(), dato)); // Se avanza recursivamente al siguiente nodo
+        return nodo;
+    }
+    
     // toString que retorna el contenido de la lista
     @Override
     public String toString(){ // Asume que no esta vacia la lista
